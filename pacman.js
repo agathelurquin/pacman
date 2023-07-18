@@ -5,7 +5,7 @@ export default class Pacman extends Character {
     super(x, y, classes);
   }
 
-  cellContainsPoints() {
-    return this.currentCell.classList.contains("point");
+  cellContainsPoints(cellClass) {
+    return this.currentCell.classList.contains(cellClass);
   }
 }

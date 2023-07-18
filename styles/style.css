@@ -31,11 +31,12 @@
 
 .point {
   background-color: aquamarine;
-  color: brown;
+  color: green;
   text-align: center;
 }
 .maxi-point {
-  font-size: 70px;
+  color: palevioletred;
+  text-align: center;
 }
 
 .hidden {

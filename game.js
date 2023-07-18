@@ -40,12 +40,22 @@ export default class Game {
     this.intervalId = setInterval(() => {
       console.log("Running");
       this.pacman.move(this.pacman.direction);
-      if (this.pacman.cellContainsPoints()) {
-        this.score++;
+
+      if (
+        this.pacman.cellContainsPoints("maxi-point") ||
+        this.pacman.cellContainsPoints("point")
+      ) {
         this.scoreElement.textContent = this.score;
-        this.pacman.removeClass("point");
         this.pacman.clearCell();
-        console.log(this.score);
+      }
+
+      if (this.pacman.cellContainsPoints("point")) {
+        this.score += 10;
+        this.pacman.removeClass("point");
+      }
+      if (this.pacman.cellContainsPoints("maxi-point")) {
+        this.score += 50;
+        this.pacman.removeClass("maxi-point");
       }
       // for (let i = 0; i < this.ghost.length; i++) {
       //   const element = this.ghost[i];
@@ -53,6 +63,4 @@ export default class Game {
       // }
     }, 200);
   }
-
-  display() {}
 }
