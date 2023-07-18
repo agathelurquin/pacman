@@ -1,3 +1,6 @@
+import Pacman from "./pacman.js";
+import Game from "./game.js";
+
 export default class Character {
   constructor(x, y, classes) {
     this.x = x;
@@ -10,8 +13,8 @@ export default class Character {
   }
 
   move(direction = this.direction) {
-    console.log(direction);
     if (!this.direction) return;
+
     this.previousCell = this.currentCell;
     switch (direction) {
       case "up":
@@ -35,12 +38,12 @@ export default class Character {
         );
         break;
     }
-    console.log(this.currentCell);
+
+    // Remove the dot once visited
     if (this.currentCell && !this.currentCell.classList.contains("wall")) {
       this.previousCell.classList.remove(this.classes);
       this.currentCell.classList.add(this.classes);
-      // this.x = Number(this.currentCell.getAttribute('x'))
-      // this.y = Number(this.currentCell.getAttribute('y'))
+
       switch (direction) {
         case "up":
           --this.x;
@@ -62,5 +65,16 @@ export default class Character {
         this.currentCell.classList.remove("bug");
       }, 200);
     }
+  }
+
+  addClass(cellClass) {
+    this.currentCell.classList.add(cellClass);
+  }
+  removeClass(cellClass) {
+    this.currentCell.classList.remove(cellClass);
+  }
+
+  clearCell() {
+    this.currentCell.innerHTML = "";
   }
 }

@@ -9,6 +9,7 @@ export default class Game {
     this.ghost = [];
     this.score = 0;
     this.intervalId = null;
+    this.scoreElement = document.querySelector(".score span");
   }
 
   generateMatrix() {
@@ -35,13 +36,23 @@ export default class Game {
   }
 
   startThatGame() {
+    document.querySelector(".score").classList.remove("hidden");
     this.intervalId = setInterval(() => {
       console.log("Running");
       this.pacman.move(this.pacman.direction);
+      if (this.pacman.cellContainsPoints()) {
+        this.score++;
+        this.scoreElement.textContent = this.score;
+        this.pacman.removeClass("point");
+        this.pacman.clearCell();
+        console.log(this.score);
+      }
       // for (let i = 0; i < this.ghost.length; i++) {
       //   const element = this.ghost[i];
       //   element.move(element.direction);
       // }
     }, 200);
   }
+
+  display() {}
 }
