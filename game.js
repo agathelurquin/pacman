@@ -1,12 +1,13 @@
 import gameField from "./data.js";
 import Pacman from "./pacman.js";
+import Ghost from "./ghost.js";
 
 export default class Game {
   constructor() {
     this.mazeElement = document.querySelector(".maze");
     this.matrix = this.generateMatrix();
     this.pacman = new Pacman(23, 13, "current");
-    this.ghost = [];
+    this.ghost = new Ghost(23, 16, "ghost3");
     this.score = 0;
     this.intervalId = null;
     this.scoreElement = document.querySelector(".score span");
@@ -19,14 +20,24 @@ export default class Game {
         cell.classList.add("cell");
         cell.setAttribute("x", i);
         cell.setAttribute("y", j);
-        if (gameField[i][j] === 0) {
-          cell.classList.add("wall");
-        } else if (gameField[i][j] === 1) {
-          cell.classList.add("point");
-          cell.innerHTML = "&sdot;";
-        } else if (gameField[i][j] === 2) {
-          cell.classList.add("maxi-point");
-          cell.innerHTML = "&sdot;";
+
+        switch (gameField[i][j]) {
+          case 0:
+            cell.classList.add("wall");
+            break;
+          case 1:
+            cell.classList.add("point");
+            cell.innerHTML = "&sdot;";
+            break;
+          case 2:
+            cell.classList.add("maxi-point");
+            cell.innerHTML = "&sdot;";
+            break;
+          case 9:
+            cell.classList.add("monster");
+            break;
+          default:
+            break;
         }
         this.mazeElement.append(cell);
       }
@@ -57,6 +68,8 @@ export default class Game {
         this.score += 50;
         this.pacman.removeClass("maxi-point");
       }
+
+      this.pacman.changeSides;
       // for (let i = 0; i < this.ghost.length; i++) {
       //   const element = this.ghost[i];
       //   element.move(element.direction);

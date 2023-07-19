@@ -42,3 +42,11 @@
 .hidden {
   display: none;
 }
+
+.ghost3 {
+  background-image: url("./../img/ghost3-pacman.png");
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
