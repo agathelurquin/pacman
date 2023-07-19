@@ -1,6 +1,6 @@
-import gameField from "./data.js";
-import Pacman from "./pacman.js";
-import Ghost from "./ghost.js";
+import gameField from "./data.js"; // to get access to the game's matrix
+import Pacman from "./pacman.js"; // to get Pacman's behaviors
+import Ghost from "./ghost.js"; // to get Ghosts' behaviors
 
 export default class Game {
   constructor() {
@@ -13,6 +13,8 @@ export default class Game {
     this.scoreElement = document.querySelector(".score span");
   }
 
+  // each time we click start game, a new Pacman grid is generated
+  // with the classes that define if the cell is a wall, a point, a character or empty
   generateMatrix() {
     for (let i = 0; i < gameField.length; i++) {
       for (let j = 0; j < gameField[i].length; j++) {
@@ -46,12 +48,15 @@ export default class Game {
     return gameField;
   }
 
+  // Each time we click start game, we start listening to Pacman's movements every 2ms
+
   startThatGame() {
     document.querySelector(".score").classList.remove("hidden");
     this.intervalId = setInterval(() => {
       console.log("Running");
       this.pacman.move(this.pacman.direction);
       this.ghost.ghostMove();
+      // Counts score if we touch normal dots
       if (
         this.pacman.cellContainsPoints("maxi-point") ||
         this.pacman.cellContainsPoints("point")
@@ -60,6 +65,7 @@ export default class Game {
         this.pacman.clearCell();
       }
 
+      // Counts score if we touch super dots
       if (this.pacman.cellContainsPoints("point")) {
         this.score += 10;
         this.pacman.removeClass("point");
@@ -69,6 +75,7 @@ export default class Game {
         this.pacman.removeClass("maxi-point");
       }
 
+      // Allows Pacman to go through the "secret gate"
       this.pacman.changeSides();
 
       // for (let i = 0; i < this.ghost.length; i++) {

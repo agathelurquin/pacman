@@ -3,30 +3,54 @@ import Character from "./character.js";
 export default class Ghost extends Character {
   constructor(x, y, classes) {
     super(x, y, classes);
+    this.direction = "up";
   }
 
   nextMoves() {
     // get the surronding cells
     let nextCellsGhost = super.getCell(this.x, this.y);
     // check which are walls and get and array of the next possible moves
-    let possibleMoves = [];
+    this.possibleMoves = [];
     if (!nextCellsGhost[0].classList.contains("wall")) {
-      possibleMoves.push("up");
+      this.possibleMoves.push("up");
     }
     if (!nextCellsGhost[1].classList.contains("wall")) {
-      possibleMoves.push("right");
+      this.possibleMoves.push("right");
     }
     if (!nextCellsGhost[2].classList.contains("wall")) {
-      possibleMoves.push("down");
+      this.possibleMoves.push("down");
     }
     if (!nextCellsGhost[3].classList.contains("wall")) {
-      possibleMoves.push("left");
+      this.possibleMoves.push("left");
+    }
+
+    // prevents the ghost from going backwards
+    switch (this.direction) {
+      case "up":
+        this.possibleMoves = this.possibleMoves.filter(
+          (move) => move !== "down"
+        );
+        break;
+      case "right":
+        this.possibleMoves = this.possibleMoves.filter(
+          (move) => move !== "left"
+        );
+        break;
+      case "down":
+        this.possibleMoves = this.possibleMoves.filter((move) => move !== "up");
+        break;
+      case "left":
+        this.possibleMoves = this.possibleMoves.filter(
+          (move) => move !== "right"
+        );
+        break;
     }
 
     // choose one direction among the possible moves to pass to the method move()
     let nextMove =
-      possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      this.possibleMoves[Math.floor(Math.random() * this.possibleMoves.length)];
     this.direction = nextMove;
+
     return nextMove;
     // definir direction
     // this.direction== possibleMoves.random
@@ -35,24 +59,7 @@ export default class Ghost extends Character {
   ghostMove() {
     // definir direction
     // this.direction== possibleMoves.random
-    let originX = this.previousCell;
-    let originY = this.y;
     super.move(this.nextMoves());
-    console.log(
-      "origin:",
-      originX,
-      originY,
-      "current",
-      this.x,
-      this.y,
-      "previous",
-      this.previousCell
-    );
-    if (originX === this.x && originY === this.y) {
-      console.log("RETURNNN");
-    } else {
-      console.log("continueee");
-    }
   }
 }
 

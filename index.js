@@ -1,14 +1,17 @@
 import Game from "./game.js";
 
+// variable to trigger the game
 let game;
 const startButton = document.getElementById("start");
 
+// new Game trigger
 startButton.addEventListener("click", () => {
   startButton.disabled = true;
   game = new Game();
   game.startThatGame();
 });
 
+// getting user input continuously to control Pacman's movements
 window.addEventListener("keydown", (event) => {
   event.preventDefault();
   switch (event.key) {
@@ -25,5 +28,5 @@ window.addEventListener("keydown", (event) => {
       game.pacman.direction = "left";
       break;
   }
-  // move(direction);
 });
+// Next calls in game.js

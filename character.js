@@ -10,13 +10,15 @@ export default class Character {
     this.currentCell = document.querySelector(`[x="${this.x}"][y="${this.y}"]`);
     this.previousCell = null;
     this.currentCell.classList.add(this.classes);
+    this.possibleMoves;
   }
 
+  // defines the common behaviors of all characters
   move(direction = this.direction) {
-    debugger;
     if (!this.direction) return;
     this.direction = direction;
     this.previousCell = this.currentCell;
+
     switch (direction) {
       case "up":
         this.currentCell = document.querySelector(
@@ -40,10 +42,10 @@ export default class Character {
         break;
     }
 
+    // Move the character image from cell to cell
     if (this.currentCell && !this.currentCell.classList.contains("wall")) {
       this.previousCell.classList.remove(this.classes);
       this.currentCell.classList.add(this.classes);
-      console.log("Hellooooooo", this.previousCell.getAttribute("x"));
 
       switch (direction) {
         case "up":
@@ -60,6 +62,7 @@ export default class Character {
           break;
       }
     } else {
+      // for later, if we try to go through a wall, add css effect like buzzing or something
       this.currentCell = this.previousCell;
       this.currentCell.classList.add("bug");
       setTimeout(() => {
@@ -79,8 +82,8 @@ export default class Character {
     this.currentCell.innerHTML = "";
   }
 
+  //identify the surrounding cells
   getCell(x, y) {
-    //identify the surrounding cells
     let nextUp = document.querySelector(`[x="${x - 1}"][y="${y}"]`);
     let nextRight = document.querySelector(`[x="${x}"][y="${Number(y) + 1}"]`);
     let nextDown = document.querySelector(`[x="${Number(x) + 1}"][y="${y}"]`);
