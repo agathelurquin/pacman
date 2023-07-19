@@ -7,7 +7,7 @@ export default class Game {
     this.mazeElement = document.querySelector(".maze");
     this.matrix = this.generateMatrix();
     this.pacman = new Pacman(23, 13, "current");
-    this.ghost = new Ghost(23, 16, "ghost3");
+    this.ghost = new Ghost(2, 15, "ghost3");
     this.score = 0;
     this.intervalId = null;
     this.scoreElement = document.querySelector(".score span");
@@ -51,7 +51,7 @@ export default class Game {
     this.intervalId = setInterval(() => {
       console.log("Running");
       this.pacman.move(this.pacman.direction);
-
+      this.ghost.ghostMove();
       if (
         this.pacman.cellContainsPoints("maxi-point") ||
         this.pacman.cellContainsPoints("point")
@@ -70,6 +70,7 @@ export default class Game {
       }
 
       this.pacman.changeSides();
+
       // for (let i = 0; i < this.ghost.length; i++) {
       //   const element = this.ghost[i];
       //   element.move(element.direction);

@@ -77,4 +77,14 @@ export default class Character {
   clearCell() {
     this.currentCell.innerHTML = "";
   }
+
+  getCell(x, y) {
+    //identify the surrounding cells
+    let nextUp = document.querySelector(`[x="${x - 1}"][y="${y}"]`);
+    let nextRight = document.querySelector(`[x="${x}"][y="${Number(y) + 1}"]`);
+    let nextDown = document.querySelector(`[x="${Number(x) + 1}"][y="${y}"]`);
+    let nextLeft = document.querySelector(`[x="${x}"][y="${y - 1}"]`);
+    let nextCells = [nextUp, nextRight, nextDown, nextLeft];
+    return nextCells;
+  }
 }
