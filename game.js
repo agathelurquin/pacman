@@ -69,7 +69,7 @@ export default class Game {
         this.pacman.removeClass("maxi-point");
       }
 
-      this.pacman.changeSides;
+      this.pacman.changeSides();
       // for (let i = 0; i < this.ghost.length; i++) {
       //   const element = this.ghost[i];
       //   element.move(element.direction);
