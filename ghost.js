@@ -8,7 +8,6 @@ export default class Ghost extends Character {
   nextMoves() {
     // get the surronding cells
     let nextCellsGhost = super.getCell(this.x, this.y);
-
     // check which are walls and get and array of the next possible moves
     let possibleMoves = [];
     if (!nextCellsGhost[0].classList.contains("wall")) {
@@ -36,7 +35,24 @@ export default class Ghost extends Character {
   ghostMove() {
     // definir direction
     // this.direction== possibleMoves.random
+    let originX = this.previousCell;
+    let originY = this.y;
     super.move(this.nextMoves());
+    console.log(
+      "origin:",
+      originX,
+      originY,
+      "current",
+      this.x,
+      this.y,
+      "previous",
+      this.previousCell
+    );
+    if (originX === this.x && originY === this.y) {
+      console.log("RETURNNN");
+    } else {
+      console.log("continueee");
+    }
   }
 }
 

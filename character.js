@@ -13,8 +13,9 @@ export default class Character {
   }
 
   move(direction = this.direction) {
+    debugger;
     if (!this.direction) return;
-
+    this.direction = direction;
     this.previousCell = this.currentCell;
     switch (direction) {
       case "up":
@@ -39,10 +40,10 @@ export default class Character {
         break;
     }
 
-    // Remove the dot once visited
     if (this.currentCell && !this.currentCell.classList.contains("wall")) {
       this.previousCell.classList.remove(this.classes);
       this.currentCell.classList.add(this.classes);
+      console.log("Hellooooooo", this.previousCell.getAttribute("x"));
 
       switch (direction) {
         case "up":

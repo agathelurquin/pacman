@@ -33,7 +33,7 @@ export default class Pacman extends Character {
     }
   }
 
-  loseLife() {
-    this.remainingLives--;
-  }
+  // loseLife() {
+  //   this.remainingLives--;
+  // }
 }
