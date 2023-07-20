@@ -9,7 +9,8 @@ export default class Game {
     this.mazeElement = document.querySelector(".maze");
     this.matrix = this.generateMatrix();
     this.pacman = new Pacman(23, 13, "current");
-    this.ghost = new Ghost(14, 5, "ghost3");
+    this.ghost1 = new Ghost(14, 5, "ghost3");
+    this.ghost2 = new Ghost(14, 6, "ghost2");
     this.score = 0;
     this.intervalId = null;
     this.scoreElement = document.querySelector(".score span");
@@ -61,7 +62,8 @@ export default class Game {
     this.intervalId = setInterval(() => {
       // console.log("Running");
       this.pacman.move(this.pacman.direction);
-      this.ghost.ghostMove();
+      this.ghost1.ghostMove();
+      this.ghost2.ghostMove();
 
       // Count the score when touching new dots
       this.getPoints();
@@ -106,8 +108,10 @@ export default class Game {
 
   loseLives() {
     if (
-      this.pacman.x === Number(this.ghost.previousX) &&
-      this.pacman.y === Number(this.ghost.previousY)
+      (this.pacman.x === Number(this.ghost1.previousX) &&
+        this.pacman.y === Number(this.ghost1.previousY)) ||
+      (this.pacman.x === Number(this.ghost2.previousX) &&
+        this.pacman.y === Number(this.ghost2.previousY))
     ) {
       this.pacman.remainingLives -= 1;
       this.lifeElement.textContent = this.pacman.remainingLives;

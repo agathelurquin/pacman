@@ -39,7 +39,7 @@
 //  *
 //  * - this.matrix = []
 //  * - this.pacman = null
-//  * - this.ghosts = []
+//  * - s = []
 //  *
 //  *
 //  * generateMatrix
