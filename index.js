@@ -3,13 +3,19 @@ import Game from "./game.js";
 // variable to trigger the game
 let game;
 const startButton = document.getElementById("start");
+const winScreen = document.getElementById("win-screen");
+const looseScreen = document.getElementById("loose-screen");
 
 // new Game trigger
-startButton.addEventListener("click", () => {
+function start() {
+  if (game) {
+    game.reset();
+  }
   startButton.disabled = true;
   game = new Game();
   game.startThatGame();
-});
+}
+startButton.addEventListener("click", start);
 
 // getting user input continuously to control Pacman's movements
 window.addEventListener("keydown", (event) => {
@@ -30,4 +36,6 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+winScreen.querySelector("button").addEventListener("click", start);
+looseScreen.querySelector("button").addEventListener("click", start);
 // Next calls in game.js

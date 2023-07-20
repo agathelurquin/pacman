@@ -1,6 +1,8 @@
 import gameField from "./data.js"; // to get access to the game's matrix
 import Pacman from "./pacman.js"; // to get Pacman's behaviors
 import Ghost from "./ghost.js"; // to get Ghosts' behaviors
+const winScreen = document.getElementById("win-screen");
+const looseScreen = document.getElementById("loose-screen");
 
 export default class Game {
   constructor() {
@@ -68,6 +70,7 @@ export default class Game {
       this.pacman.changeSides();
       this.loseLives();
       this.displayResult();
+      // this.reset();
     }, 200);
     // if pacman.currentCell === ghost.previousCell
   }
@@ -113,13 +116,25 @@ export default class Game {
 
   displayResult() {
     let result = document.createElement("div");
-    result.textContent = `let's see ${this.score}`;
-    if (this.score > 20) {
+    if (this.score >= 8000) {
       this.resultsElement.append(result);
       clearInterval(this.intervalId);
+      this.intervalId = null;
+      winScreen.showModal();
+    }
+    if (this.pacman.remainingLives === 2) {
+      this.resultsElement.append(result);
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+      looseScreen.showModal();
     }
   }
 
+  reset() {
+    this.mazeElement.innerHTML = "";
+    winScreen.close();
+    looseScreen.close();
+  }
   // restart() {
   //   if (this.remainingLives < 3) {
   //     clearInterval(this.intervalId);

@@ -1,4 +1,4 @@
-* {
+*:not(dialog) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -44,6 +44,9 @@
   display: none;
 }
 
+.ghost2 {
+  background-image: url("./../img/ghost2-pacman.png");
+}
 .ghost3 {
   background-image: url("./../img/ghost1-pacman.png");
   height: 20px;
