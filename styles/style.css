@@ -78,7 +78,6 @@ h1 {
   display: grid;
   grid-template-columns: repeat(27, 1fr);
   width: 100%;
-  max-width: fit-content;
 }
 
 /* CELL STYLE  */
@@ -86,8 +85,8 @@ h1 {
   background-color: black;
   padding: 1px;
   margin: 1px;
-  width: 20px;
-  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .current {
@@ -162,8 +161,22 @@ h1 {
 
 /* MEDIA QUERIES */
 
-@media (min-width: 750px) {
+@media (min-width: 615px) {
   .hero-banner {
     background-image: url("./../img/pacman_background_1.png");
+  }
+
+  .game__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .game__info {
+    margin: auto;
+    padding: 0 20px;
+  }
+
+  .maze {
+    max-width: 615px;
   }
 }
