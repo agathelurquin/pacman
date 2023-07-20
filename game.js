@@ -7,7 +7,7 @@ export default class Game {
     this.mazeElement = document.querySelector(".maze");
     this.matrix = this.generateMatrix();
     this.pacman = new Pacman(23, 13, "current");
-    this.ghost = new Ghost(2, 15, "ghost3");
+    this.ghost = new Ghost(14, 5, "ghost3");
     this.score = 0;
     this.intervalId = null;
     this.scoreElement = document.querySelector(".score span");
@@ -56,32 +56,42 @@ export default class Game {
       console.log("Running");
       this.pacman.move(this.pacman.direction);
       this.ghost.ghostMove();
-      // Counts score if we touch normal dots
-      if (
-        this.pacman.cellContainsPoints("maxi-point") ||
-        this.pacman.cellContainsPoints("point")
-      ) {
-        this.scoreElement.textContent = this.score;
-        this.pacman.clearCell();
-      }
 
-      // Counts score if we touch super dots
-      if (this.pacman.cellContainsPoints("point")) {
-        this.score += 10;
-        this.pacman.removeClass("point");
-      }
-      if (this.pacman.cellContainsPoints("maxi-point")) {
-        this.score += 50;
-        this.pacman.removeClass("maxi-point");
-      }
+      // Count the score when touching new dots
+      this.getPoints();
 
       // Allows Pacman to go through the "secret gate"
       this.pacman.changeSides();
+      // this.ghost.changeSides();
 
       // for (let i = 0; i < this.ghost.length; i++) {
       //   const element = this.ghost[i];
       //   element.move(element.direction);
       // }
     }, 200);
+
+    // if pacman.currentCell === ghost.previousCell
+  }
+
+  // Counts score when touching dots
+  getPoints() {
+    // touch normal dots
+    if (
+      this.pacman.cellContainsPoints("maxi-point") ||
+      this.pacman.cellContainsPoints("point")
+    ) {
+      this.scoreElement.textContent = this.score;
+      this.pacman.clearCell();
+    }
+
+    // touch super dots
+    if (this.pacman.cellContainsPoints("point")) {
+      this.score += 10;
+      this.pacman.removeClass("point");
+    }
+    if (this.pacman.cellContainsPoints("maxi-point")) {
+      this.score += 50;
+      this.pacman.removeClass("maxi-point");
+    }
   }
 }

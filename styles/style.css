@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: repeat(27, 1fr);
   width: 100%;
+  max-width: fit-content;
 }
 
 .cell {
