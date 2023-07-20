@@ -11,6 +11,7 @@ export default class Game {
     this.score = 0;
     this.intervalId = null;
     this.scoreElement = document.querySelector(".score span");
+    this.lifeElement = document.querySelector(".lives span");
   }
 
   // each time we click start game, a new Pacman grid is generated
@@ -52,6 +53,7 @@ export default class Game {
 
   startThatGame() {
     document.querySelector(".score").classList.remove("hidden");
+    document.querySelector(".lives").classList.remove("hidden");
     this.intervalId = setInterval(() => {
       // console.log("Running");
       this.pacman.move(this.pacman.direction);
@@ -90,36 +92,19 @@ export default class Game {
     }
   }
 
-  loseLives() {
-    console.log(
-      //   "pacman",
-      "OUR PACMAN CURRENT VALUES",
-      this.pacman.x,
-      //   "current ",
-      //   this.pacman.currentCell,
-      //   "previous",
-      //   this.pacman.previousCell,
-      //   "ghost",
-      this.pacman.y,
-      //   "current ",
-      //   this.ghost.currentCell,
-      //   "previous",
-      // this.ghost.previousCell.getAttribute("x")
-      "OUR GHOST PAST VALUES",
-      Number(this.ghost.previousX),
-      //   "previous",
-      //   this.ghost.previousCell.getAttribute("y"),
-      //   "or",
-      Number(this.ghost.previousY)
-      //   "lives",
-      //   this.pacman.remainingLives
-    );
+  renderLives() {
+    let lifeCount = document.createElement("div");
+    lifeCount.innerHTML = `Lives: ${this.pacman.remainingLives}/3`;
+    this.lifeElement.append(lifeCount);
+  }
 
+  loseLives() {
     if (
       this.pacman.x === Number(this.ghost.previousX) &&
       this.pacman.y === Number(this.ghost.previousY)
     ) {
       this.pacman.remainingLives -= 1;
+      this.lifeElement.textContent = this.pacman.remainingLives;
     }
     // if (this.pacman.currentCell === this.ghost.position) {
     // }
