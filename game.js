@@ -53,7 +53,7 @@ export default class Game {
   startThatGame() {
     document.querySelector(".score").classList.remove("hidden");
     this.intervalId = setInterval(() => {
-      console.log("Running");
+      // console.log("Running");
       this.pacman.move(this.pacman.direction);
       this.ghost.ghostMove();
 
@@ -62,12 +62,7 @@ export default class Game {
 
       // Allows Pacman to go through the "secret gate"
       this.pacman.changeSides();
-      // this.ghost.changeSides();
-
-      // for (let i = 0; i < this.ghost.length; i++) {
-      //   const element = this.ghost[i];
-      //   element.move(element.direction);
-      // }
+      this.loseLives();
     }, 200);
 
     // if pacman.currentCell === ghost.previousCell
@@ -93,5 +88,40 @@ export default class Game {
       this.score += 50;
       this.pacman.removeClass("maxi-point");
     }
+  }
+
+  loseLives() {
+    console.log(
+      //   "pacman",
+      "OUR PACMAN CURRENT VALUES",
+      this.pacman.x,
+      //   "current ",
+      //   this.pacman.currentCell,
+      //   "previous",
+      //   this.pacman.previousCell,
+      //   "ghost",
+      this.pacman.y,
+      //   "current ",
+      //   this.ghost.currentCell,
+      //   "previous",
+      // this.ghost.previousCell.getAttribute("x")
+      "OUR GHOST PAST VALUES",
+      Number(this.ghost.previousX),
+      //   "previous",
+      //   this.ghost.previousCell.getAttribute("y"),
+      //   "or",
+      Number(this.ghost.previousY)
+      //   "lives",
+      //   this.pacman.remainingLives
+    );
+
+    if (
+      this.pacman.x === Number(this.ghost.previousX) &&
+      this.pacman.y === Number(this.ghost.previousY)
+    ) {
+      this.pacman.remainingLives -= 1;
+    }
+    // if (this.pacman.currentCell === this.ghost.position) {
+    // }
   }
 }

@@ -29,4 +29,5 @@ window.addEventListener("keydown", (event) => {
       break;
   }
 });
+
 // Next calls in game.js

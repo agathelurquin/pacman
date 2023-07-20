@@ -8,7 +8,11 @@ export default class Character {
     this.classes = classes;
     this.direction = "";
     this.currentCell = document.querySelector(`[x="${this.x}"][y="${this.y}"]`);
-    this.previousCell = null;
+    this.previousCell = document.querySelector(
+      `[x="${this.x}"][y="${this.y}"]`
+    );
+    this.previousX = this.previousCell.getAttribute("x");
+    this.previousY = this.previousCell.getAttribute("y");
     // Allows the character image to move from cell to cell
     this.currentCell.classList.add(this.classes);
     this.possibleMoves;
@@ -17,19 +21,13 @@ export default class Character {
   // defines the common behaviors of all characters
   move(direction = this.direction) {
     // Prevents bug if no direction is passed
-    // debugger;
-    // if (cell) {
-    //   this.previousCell = this.currentCell;
-    //   this.currentCell = cell;
-    //   this.previousCell.classList.remove(this.classes);
-    //   this.currentCell.classList.add(this.classes);
-    //   return;
-    // }
     if (!this.direction) return;
 
     // Stores the cell we are moving from and updates the new cell to currentCell
     this.direction = direction;
     this.previousCell = this.currentCell;
+    this.previousX = this.x;
+    this.previousY = this.y;
 
     // Selects the new cell
     switch (direction) {
@@ -112,50 +110,11 @@ export default class Character {
       `[x="${x}"][y="${y === 0 ? 26 : y - 1}"]`
     );
 
-    // if (!nextLeft) {
-    //   nextLeft = document.querySelector(`[x="14"][y="26"]`);
-    //   // this.y = 26;
-    // }
-    // if (!nextRight) {
-    //   nextRight = document.querySelector(`[x="14"][y="0"]`);
-    //   // this.y = 0;
-    // }
-
     let nextCells = [nextUp, nextRight, nextDown, nextLeft];
-    // nextCells.forEach((cell) => {
-    //   console.log(
-    //     "this",
-    //     "x===",
-    //     cell.getAttribute("x"),
-    //     "y===",
-    //     cell.getAttribute("y")
-    //   );
-
-    //   if (cell.getAttribute("x") === "14" && cell.getAttribute("y") === "0") {
-    //     console.log("same!");
-
-    //     cell = document.querySelector(`[x="${14}"][y="${27}"]`);
-    //   }
-    console.log("============>>>      ", nextCells);
     return nextCells;
   }
 
-  // SHOULD CALL CHANGE SIDES BUT HERE
-
   changeSides() {
-    // let nextRight = document.querySelector(
-    //   `[x="${this.x}"][y="${Number(this.y) + 1}"]`
-    // );
-    // let nextLeft = document.querySelector(`[x="${this.x}"][y="${this.y - 1}"]`);
-
-    // if (!nextLeft) {
-    //   // nextLeft = document.querySelector(`[x="14"][y="26"]`);
-    //   this.y = 27;
-    // }
-    // if (!nextRight) {
-    //   // nextRight = document.querySelector(`[x="14"][y="0"]`);
-    //   this.y = -1;
-    // }
     if (
       this.x === 14 &&
       this.y === 0 &&

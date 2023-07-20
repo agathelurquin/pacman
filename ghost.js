@@ -8,43 +8,12 @@ export default class Ghost extends Character {
 
   nextMoves() {
     // get the surronding cells
-    // console.log(this.x);
-    // if (this.x === 14 && this.y === 0) {
-    //   console.log("WARNINNNNG", this.previousCell);
-    //   this.y = 27;
-    // }
-    // if (this.x === 14 && this.y === 27) {
-    //   console.log("WARNINNNNG");
-    //   this.y = 0;
-    // }
-    console.log("xBBB", this.x, "yBBB", this.y);
 
-    // if (
-    //   !this.x === 14 &&
-    //   !this.y === 0 &&
-    //   this.previousCell.getAttribute("y") === "1"
-    // ) {
-    //   this.x = 14;
-    //   this.y = 26;
-    // }
-    // if (
-    //   this.x === 14 &&
-    //   this.y === 26 &&
-    //   this.previousCell.getAttribute("y") === "25"
-    // ) {
-    //   this.x = 14;
-    //   this.y = 2;
-    // }
-
-    // if (this.x === 14 && this.y === 0) {
-    //   this.previousCell = document.querySelector(`[x="${14}"][y="${26}"]`);
-    //   this.x = 14;
-    //   this.y = 26;
-    // }
-    console.log("x===", this.x, "y===", this.y);
+    // console.log("x===", this.x, "y===", this.y);
     let nextCellsGhost = super.getCell(this.x, this.y);
     // check which are walls and get and array of the next possible moves
     this.possibleMoves = [];
+
     if (!nextCellsGhost[0].classList.contains("wall")) {
       this.possibleMoves.push({ direction: "up", cell: nextCellsGhost[0] });
     }
@@ -57,14 +26,6 @@ export default class Ghost extends Character {
     if (!nextCellsGhost[3].classList.contains("wall")) {
       this.possibleMoves.push({ direction: "left", cell: nextCellsGhost[3] });
     }
-    // if (
-    //   nextCellsGhost[3].getAttribute("x") === 14 &&
-    //   nextCellsGhost[3].getAttribute("y") === 0
-    // ) {
-    //   nextCellsGhost[3] = document.querySelector(`[x="${14}"][y="${27}"]`);
-    //   console.log(nextCellsGhost[3]);
-    // Here we have an issue because we can't read .classlist pour une case qui n'existe pas.
-    // if (nextCellsGhost[3].className) {
 
     // prevents the ghost from going backwards
     switch (this.direction) {
@@ -89,7 +50,7 @@ export default class Ghost extends Character {
         );
         break;
     }
-    console.log(this.possibleMoves);
+    // console.log(this.possibleMoves);
     // choose one direction among the possible moves to pass to the method move()
     let nextMove =
       this.possibleMoves[Math.floor(Math.random() * this.possibleMoves.length)];
@@ -99,13 +60,8 @@ export default class Ghost extends Character {
   }
 
   ghostMove() {
-    // definir direction
-    // this.direction== possibleMoves.random
     super.move(this.nextMoves());
-    // this.nextMoves();
   }
-
-  // prevent Ghost from going in the secret path
 }
 
 // if ghosts x are between x==this and x==that && ghosts y are between y==this and y==that
@@ -118,18 +74,3 @@ export default class Ghost extends Character {
 
 // when pacman get to a maxi point
 // new CSS class
-
-// vers gauche
-// quand mur
-// evaluer cell top cell down
-
-// possibleMoves[];
-// si il y a pas wall à gauche , je push gauche dans l'array
-// si il y a pas wall à droite , je push droite dans l'array
-// si il y a pas wall à top , je push top dans l'array
-// si il y a pas wall à down , je push down  dans l'array
-
-// if top libre, je vais au top
-// if not go down
-// if not got right
-// if not go left
