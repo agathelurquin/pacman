@@ -12,6 +12,7 @@ export default class Game {
     this.intervalId = null;
     this.scoreElement = document.querySelector(".score span");
     this.lifeElement = document.querySelector(".lives span");
+    this.resultsElement = document.querySelector(".results span");
   }
 
   // each time we click start game, a new Pacman grid is generated
@@ -54,6 +55,7 @@ export default class Game {
   startThatGame() {
     document.querySelector(".score").classList.remove("hidden");
     document.querySelector(".lives").classList.remove("hidden");
+    document.querySelector(".results").classList.remove("hidden");
     this.intervalId = setInterval(() => {
       // console.log("Running");
       this.pacman.move(this.pacman.direction);
@@ -65,8 +67,8 @@ export default class Game {
       // Allows Pacman to go through the "secret gate"
       this.pacman.changeSides();
       this.loseLives();
+      this.displayResult();
     }, 200);
-
     // if pacman.currentCell === ghost.previousCell
   }
 
@@ -90,11 +92,12 @@ export default class Game {
       this.score += 50;
       this.pacman.removeClass("maxi-point");
     }
+    return this.score;
   }
 
   renderLives() {
     let lifeCount = document.createElement("div");
-    lifeCount.innerHTML = `Lives: ${this.pacman.remainingLives}/3`;
+    lifeCount.textContent = `Lives: ${this.pacman.remainingLives}/3`;
     this.lifeElement.append(lifeCount);
   }
 
@@ -106,7 +109,21 @@ export default class Game {
       this.pacman.remainingLives -= 1;
       this.lifeElement.textContent = this.pacman.remainingLives;
     }
-    // if (this.pacman.currentCell === this.ghost.position) {
-    // }
   }
+
+  displayResult() {
+    let result = document.createElement("div");
+    result.textContent = `let's see ${this.score}`;
+    if (this.score > 20) {
+      this.resultsElement.append(result);
+      clearInterval(this.intervalId);
+    }
+  }
+
+  // restart() {
+  //   if (this.remainingLives < 3) {
+  //     clearInterval(this.intervalId);
+  //     this.startThatGame();
+  //   }
+  // }
 }
