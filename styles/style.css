@@ -21,9 +21,6 @@ body {
   background-size: cover;
   background-position: top;
   height: 100vh;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 }
 
 .hero__content {
@@ -38,22 +35,26 @@ body {
   gap: 10px;
 }
 
+/* HERO BUTTON */
 h1 {
   color: white;
+  font-size: 4em;
 }
-
-/* HERO BUTTON */
 #start {
   padding: 5px 10px;
   font-family: "Audiowide", Courier, monospace;
   background: transparent;
   border-radius: 10px;
   border: 1px solid white;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #e72683,
+    0 0 25px #e72683, 0 0 30px #e72683, 0 0 35px #e72683, 0 0 40px #e72683;
 }
 
 #start a {
-  color: white;
   text-decoration: none;
+  font-size: 2em;
+
+  color: #fff;
 }
 
 #start:hover {
@@ -61,14 +62,26 @@ h1 {
 }
 
 /* GAME  */
+
+.game__content {
+  background-color: black;
+  color: white;
+  /* background-image: url("./../img/grey_background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
 .maze {
   background-color: black;
+  display: block;
+  margin: 0 auto;
+  padding: 30px 0;
   display: grid;
   grid-template-columns: repeat(27, 1fr);
   width: 100%;
   max-width: fit-content;
 }
 
+/* CELL STYLE  */
 .cell {
   background-color: black;
   padding: 1px;
@@ -86,6 +99,37 @@ h1 {
 .wall {
   background-color: rgb(26, 13, 212);
 }
+
+.corner-top-left {
+  border-left: 1px solid #e72683;
+  border-top: 1px solid #e72683;
+}
+.corner-top-right {
+  border-right: 1px solid #e72683;
+  border-top: 1px solid #e72683;
+}
+.corner-bottom-left {
+  border-bottom: 1px solid #e72683;
+  border-left: 1px solid #e72683;
+}
+.corner-bottom-right {
+  border-bottom: 1px solid #e72683;
+  border-right: 1px solid #e72683;
+}
+
+.right-border {
+  border-right: 1px solid #e72683;
+}
+.top-border {
+  border-top: 1px solid #e72683;
+}
+.left-border {
+  border-left: 1px solid #e72683;
+}
+.bottom-border {
+  border-bottom: 1px solid #e72683;
+}
+/* PACMAN ELEMENTS */
 
 .point {
   background-color: rgb(0, 0, 0);

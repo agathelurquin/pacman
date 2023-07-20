@@ -46,8 +46,75 @@ export default class Game {
           default:
             break;
         }
+
+        // CSS SELECTORS FOR PACMAN GRID
+        if (
+          i > 0 &&
+          gameField[i - 1][j] === 1 &&
+          gameField[i][j - 1] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("corner-top-left");
+        } else if (
+          i > 0 &&
+          j < 26 &&
+          gameField[i - 1][j] === 1 &&
+          gameField[i][j + 1] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("corner-top-right");
+        } else if (
+          i < 30 &&
+          gameField[i + 1][j] === 1 &&
+          gameField[i][j - 1] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          console.log(cell);
+          cell.classList.add("corner-bottom-left");
+        } else if (
+          i < 30 &&
+          j < 26 &&
+          gameField[i + 1][j] === 1 &&
+          gameField[i][j + 1] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("corner-bottom-right");
+        }
+
+        if (
+          i > 0 &&
+          gameField[i - 1][j] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("top-border");
+        } else if (
+          j < 26 &&
+          gameField[i][j + 1] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("right-border");
+        } else if (
+          i < 30 &&
+          gameField[i + 1][j] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("bottom-border");
+        } else if (
+          j > 0 &&
+          gameField[i][j - 1] === 1 &&
+          cell.classList.contains("wall")
+        ) {
+          cell.classList.add("left-border");
+        }
+        // END OF CSS SELECTORS
         this.mazeElement.append(cell);
       }
+
+      // for each cell
+      // (x-1)(y)  ==> class top
+      // if cell de gauche =1 ==> class left
+      // if cell de droite = 1 ==> classe right
+      // if cell de bas = 1 ==> class down
     }
 
     return gameField;
@@ -126,7 +193,7 @@ export default class Game {
       this.intervalId = null;
       winScreen.showModal();
     }
-    if (this.pacman.remainingLives === 2) {
+    if (this.pacman.remainingLives === 0) {
       this.resultsElement.append(result);
       clearInterval(this.intervalId);
       this.intervalId = null;
