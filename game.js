@@ -189,7 +189,7 @@ export default class Game {
 
   displayResult() {
     let result = document.createElement("div");
-    if (this.score >= 80) {
+    if (this.score >= 2920) {
       this.resultsElement.append(result);
       clearInterval(this.intervalId);
       this.intervalId = null;
