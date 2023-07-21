@@ -3,7 +3,6 @@ import Pacman from "./pacman.js"; // to get Pacman's behaviors
 import Ghost from "./ghost.js"; // to get Ghosts' behaviors
 const winScreen = document.getElementById("win-screen");
 const looseScreen = document.getElementById("loose-screen");
-const gameRules = document.querySelector("game__intro");
 
 export default class Game {
   constructor() {
@@ -128,6 +127,10 @@ export default class Game {
     document.querySelector(".lives").classList.remove("hidden");
     document.querySelector(".results").classList.remove("hidden");
     document.querySelector(".game__intro").classList.remove("hidden");
+    document.querySelector(".cmd_left").classList.remove("hidden");
+    document.querySelector(".cmd_top").classList.remove("hidden");
+    document.querySelector(".cmd_down").classList.remove("hidden");
+    document.querySelector(".cmd_right").classList.remove("hidden");
 
     this.intervalId = setInterval(() => {
       // console.log("Running");

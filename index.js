@@ -6,6 +6,11 @@ const startButton = document.getElementById("start");
 const winScreen = document.getElementById("win-screen");
 const looseScreen = document.getElementById("loose-screen");
 
+const leftTouch = document.querySelector(".cmd_left");
+const topTouch = document.querySelector(".cmd_top");
+const rightTouch = document.querySelector(".cmd_right");
+const downTouch = document.querySelector(".cmd_down");
+
 const welcomeSound = document.getElementById("welcome-music");
 window.addEventListener("mousemove", () => {
   welcomeSound.volume = 0.7;
@@ -43,6 +48,19 @@ window.addEventListener("keydown", (event) => {
 
       break;
   }
+});
+
+leftTouch.addEventListener("click", (event) => {
+  game.pacman.direction = "left";
+});
+rightTouch.addEventListener("click", (event) => {
+  game.pacman.direction = "right";
+});
+topTouch.addEventListener("click", (event) => {
+  game.pacman.direction = "up";
+});
+downTouch.addEventListener("click", (event) => {
+  game.pacman.direction = "down";
 });
 
 // window.addEventListener("click", (event) => {
