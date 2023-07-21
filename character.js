@@ -66,7 +66,7 @@ export default class Character {
     } else {
       // for later, if we try to go through a wall, add css effect like buzzing or something
       this.currentCell = this.previousCell;
-      this.currentCell.classList.add([this.classes, this.direction]);
+      this.currentCell.classList.add(this.classes, this.direction);
     }
   }
 
@@ -97,7 +97,7 @@ export default class Character {
   }
 
   clearCell() {
-    this.currentCell.innerHTML = "";
+    // this.currentCell.innerHTML = "";
   }
 
   // Identify the surrounding cells

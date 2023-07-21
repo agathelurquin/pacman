@@ -121,8 +121,8 @@ h1 {
   background-color: black;
   padding: 1px;
   margin: 1px;
-  max-width: 20px;
-  max-height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .current {
@@ -185,11 +185,23 @@ h1 {
 /* PACMAN ELEMENTS */
 
 .point {
+  position: relative;
   background-color: rgb(0, 0, 0);
   color: green;
   text-align: center;
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #e72683,
     0 0 25px #e72683, 0 0 30px #e72683, 0 0 35px #e72683, 0 0 40px #e72683;
+}
+.point::after {
+  content: "";
+  position: absolute;
+  height: 33%;
+  width: 33%;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-color: yellow;
 }
 .maxi-point {
   color: palevioletred;
@@ -206,6 +218,7 @@ h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 10;
 }
 .ghost2 {
   background-image: url("./../img/ghost2-pacman.png");
@@ -213,6 +226,11 @@ h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 10;
+}
+/* :is(.ghost2, .ghost3):has(.point).point {} */
+:is(.ghost2, .ghost3).point::after {
+  opacity: 0;
 }
 
 .mobile-commands {

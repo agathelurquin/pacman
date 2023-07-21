@@ -34,11 +34,11 @@ export default class Game {
             break;
           case 1:
             cell.classList.add("point");
-            cell.innerHTML = "&sdot;";
+            // cell.innerHTML = "&sdot;";
             break;
           case 2:
             cell.classList.add("maxi-point");
-            cell.innerHTML = "&sdot;";
+            // cell.innerHTML = "&sdot;";
             break;
           case 9:
             cell.classList.add("monster");
