@@ -97,7 +97,7 @@ export default class Character {
   }
 
   clearCell() {
-    // this.currentCell.innerHTML = "";
+    this.currentCell.classList.add("transparent");
   }
 
   // Identify the surrounding cells
