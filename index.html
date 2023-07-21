@@ -8,7 +8,7 @@
     <title>Pacman</title>
   </head>
   <body>
-    <div class="hero-banner">
+    <div class="hero-banner background">
       <div class="hero__content">
         <h1>LAZY PACMAN</h1>
         <button id="start">
@@ -17,20 +17,37 @@
       </div>
     </div>
 
-    <div class="game__content">
+    <div class="transition_banner background"></div>
+
+    <div class="game__content background">
       <div class="game__info">
+        <div class="game__intro hidden">
+          <h3 class="game__title">Welcome to the wish version of Pacman</h3>
+          <p class="game__rules">
+            Do we really need to explain the rules ? Well if you're born in a
+            cave here there are you ignorant: survive as long as you can and
+            that's it.
+          </p>
+        </div>
         <p class="score hidden">Score: <span>0</span></p>
-        <p class="lives hidden">Remaining Lives <span>3</span>/3</p>
+        <p class="lives hidden">Remaining Lives: <span>3</span>/3</p>
         <p class="results hidden"><span></span></p>
       </div>
       <div class="maze" id="maze"></div>
       <dialog id="win-screen">
-        <h3>Final score: <span id="score"></span></h3>
-        <button>Restart</button>
+        <h3 id="game__intro">Ah bah voilà! <span id="score"></span></h3>
+        <p>
+          We're not gonna say congrats because it's the easiest game you could
+          find on the planet.
+        </p>
+        <p>Aaand you actually took quite some time to win so...</p>
+        <button>You can do better</button>
       </dialog>
       <dialog id="loose-screen">
-        <h3>Looser<span id="lost"></span></h3>
-        <button>Restart</button>
+        <h3>Heu... what happened dude ?</h3>
+        <p>Come on, it was not thaaat hard<span id="lost"></span></p>
+        <p>You're officially worse than 99% of the rest of the users...</p>
+        <button>Save your honnor, play again</button>
       </dialog>
     </div>
   </body>

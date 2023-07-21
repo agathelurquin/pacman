@@ -15,11 +15,13 @@ body {
 }
 /* LANDING PAGE */
 
-.hero-banner {
-  background-image: url("./../img/pacman_background_mobile.png");
+.background {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
+}
+.hero-banner {
+  background-image: url("./../img/pacman_background_mobile.png");
   height: 100vh;
 }
 
@@ -50,10 +52,16 @@ h1 {
     0 0 25px #e72683, 0 0 30px #e72683, 0 0 35px #e72683, 0 0 40px #e72683;
 }
 
+h1 {
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+    0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+  color: #fff6a9;
+  text-align: center;
+}
+
 #start a {
   text-decoration: none;
   font-size: 2em;
-
   color: #fff;
 }
 
@@ -61,25 +69,54 @@ h1 {
   opacity: 50%;
 }
 
+#section05 a {
+  padding-top: 70px;
+}
+
+/* TRANSITION BANNER */
+
+.transition_banner {
+  background-image: url("./../img/pacman_transition.jpg");
+  background-position: center;
+  height: 40vh;
+  background-color: #111;
+  transition: transform 0.7s ease-in-out;
+}
+.transition_banner:hover {
+  transform: spin(360deg);
+}
+
 /* GAME  */
 
 .game__content {
-  background-color: black;
+  background-image: url("./../img/wallpaperflare.jpg");
+  background-position: bottom;
   color: white;
-  /* background-image: url("./../img/grey_background.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover; */
+}
+
+#game__intro {
+  text-align: center;
+}
+.game__title {
+  margin-bottom: 20px;
 }
 .maze {
   background-color: black;
   display: block;
-  margin: 0 auto;
-  padding: 30px 0;
+  margin: 30px auto;
   display: grid;
   grid-template-columns: repeat(27, 1fr);
   width: 100%;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #4643f7,
+    0 0 0.8rem #4643f7, 0 0 2.8rem #4643f7, inset 0 0 1.3rem #4643f7;
 }
 
+.score,
+.lives {
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+    0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+  color: #fff6a9;
+}
 /* CELL STYLE  */
 .cell {
   background-color: black;
@@ -134,6 +171,8 @@ h1 {
   background-color: rgb(0, 0, 0);
   color: green;
   text-align: center;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #e72683,
+    0 0 25px #e72683, 0 0 30px #e72683, 0 0 35px #e72683, 0 0 40px #e72683;
 }
 .maxi-point {
   color: palevioletred;
@@ -159,6 +198,42 @@ h1 {
   background-position: center;
 }
 
+/* DIALOGS  */
+
+dialog {
+  line-height: 1.75;
+  margin: auto;
+  max-width: 50%;
+  padding: 60px;
+  color: white;
+  background: transparent;
+  border-radius: 35px;
+  border: 1px solid white;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #4643f7,
+    0 0 0.8rem #4643f7, 0 0 2.8rem #4643f7, inset 0 0 1.3rem #4643f7;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(5px);
+}
+
+dialog button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 5px 10px;
+  font-family: "Audiowide", Courier, monospace;
+  background: white;
+  color: #0037ff;
+  border-radius: 10px;
+  border: 1px solid white;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #e72683,
+    0 0 25px rem #4643f7, 0 0 2.8rem #4643f7, inset 0 0 1.3rem #4643f7;
+}
+
+dialog button:hover {
+  opacity: 50%;
+}
 /* MEDIA QUERIES */
 
 @media (min-width: 615px) {
@@ -166,17 +241,86 @@ h1 {
     background-image: url("./../img/pacman_background_1.png");
   }
 
+  h1 {
+    animation: blink 12s infinite;
+    -webkit-animation: blink 12s infinite;
+  }
+
+  @-webkit-keyframes blink {
+    20%,
+    24%,
+    55% {
+      color: #111;
+      text-shadow: none;
+    }
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+      /*     color: #fccaff;
+            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+            0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+      text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+        0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+      color: #fff6a9;
+    }
+  }
+
+  @keyframes blink {
+    20%,
+    24%,
+    55% {
+      color: #111;
+      text-shadow: none;
+    }
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+      /*     color: #fccaff;
+            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+            0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+      text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+        0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+      color: #fff6a9;
+    }
+  }
+}
+@media (min-width: 644px) {
+  .maze {
+    max-width: 615px;
+  }
+}
+
+@media (min-width: 1000px) {
   .game__content {
     display: flex;
     justify-content: space-between;
   }
 
   .game__info {
+    width: 30%;
     margin: auto;
     padding: 0 20px;
+    line-height: 1.75;
   }
 
   .maze {
     max-width: 615px;
+  }
+
+  dialog {
+    max-width: 20%;
+    line-height: 2;
   }
 }
