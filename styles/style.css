@@ -358,8 +358,13 @@ dialog button:hover {
 
 @media (min-width: 1000px) {
   .game__content {
+    max-width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+  }
+
+  .hidden-desktop {
+    display: none;
   }
 
   .game__info {
@@ -369,8 +374,13 @@ dialog button:hover {
     line-height: 1.75;
   }
 
+  .game {
+    padding-left: 40px;
+  }
+
   .maze {
     max-width: 615px;
+    margin-left: 0;
   }
 
   dialog {
