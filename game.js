@@ -128,9 +128,10 @@ export default class Game {
     document.querySelector(".lives").classList.remove("hidden");
     document.querySelector(".results").classList.remove("hidden");
     document.querySelector(".game__intro").classList.remove("hidden");
+
     this.intervalId = setInterval(() => {
       // console.log("Running");
-      this.pacman.move(this.pacman.direction);
+      this.pacman.move();
       this.ghost1.ghostMove();
       this.ghost2.ghostMove();
 
@@ -141,32 +142,18 @@ export default class Game {
       this.pacman.changeSides();
       this.loseLives();
       this.displayResult();
-      // this.reset();
     }, 200);
-    // if pacman.currentCell === ghost.previousCell
   }
 
   // Counts score when touching dots
   getPoints() {
     // touch normal dots
-    if (
-      this.pacman.cellContainsPoints("maxi-point") ||
-      this.pacman.cellContainsPoints("point")
-    ) {
-      this.scoreElement.textContent = this.score;
-      this.pacman.clearCell();
-    }
-
-    // touch super dots
     if (this.pacman.cellContainsPoints("point")) {
       this.score += 10;
-      this.pacman.removeClass("point");
+      this.scoreElement.textContent = this.score;
+      this.pacman.clearCell();
+      this.pacman.currentCell.classList.remove("point");
     }
-    if (this.pacman.cellContainsPoints("maxi-point")) {
-      this.score += 50;
-      this.pacman.removeClass("maxi-point");
-    }
-    return this.score;
   }
 
   renderLives() {
@@ -208,10 +195,4 @@ export default class Game {
     winScreen.close();
     looseScreen.close();
   }
-  // restart() {
-  //   if (this.remainingLives < 3) {
-  //     clearInterval(this.intervalId);
-  //     this.startThatGame();
-  //   }
-  // }
 }

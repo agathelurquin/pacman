@@ -69,10 +69,6 @@ h1 {
   opacity: 50%;
 }
 
-#section05 a {
-  padding-top: 70px;
-}
-
 /* TRANSITION BANNER */
 
 .transition_banner {
@@ -93,7 +89,9 @@ h1 {
   background-position: bottom;
   color: white;
 }
-
+.game__info {
+  padding: 0 30px;
+}
 #game__intro {
   text-align: center;
 }
@@ -127,11 +125,29 @@ h1 {
 }
 
 .current {
-  background-image: url("./../img/pacman.png");
+  background-image: url("./../img/pacman-right.png");
+  height: 20px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.current.left {
+  transform: scaleX(-1);
+}
+.current.down {
+  rotate: 90deg;
+}
+.current.up {
+  rotate: -90deg;
+}
+
+/* .pacman-right {
+  background-image: url("./../img/pacman-right.png");
+}
+.pacman-left {
+  background-image: url("./../img/pacman-right.png");
+} */
 .wall {
   background-color: rgb(26, 13, 212);
 }
@@ -196,6 +212,19 @@ h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.mobile-commands {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cmd {
+  background-color: #ff8d00;
+  color: black;
+  padding: 15px;
+  margin: 5px;
+  border-radius: 10px;
 }
 
 /* DIALOGS  */

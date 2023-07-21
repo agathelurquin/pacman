@@ -10,7 +10,7 @@ export default class Pacman extends Character {
     return this.currentCell.classList.contains(cellClass);
   }
 
-  // loseLife() {
-  //   this.remainingLives--;
-  // }
+  loseLife() {
+    this.remainingLives--;
+  }
 }

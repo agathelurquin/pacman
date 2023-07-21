@@ -33,7 +33,16 @@
         <p class="lives hidden">Remaining Lives: <span>3</span>/3</p>
         <p class="results hidden"><span></span></p>
       </div>
+      <!-- <div class="game"> -->
       <div class="maze" id="maze"></div>
+      <!-- <div class="mobile-commands">
+          <div class="cmd cmd_left hidden">Left</div>
+          <div class="cmd cmd_top hidden">Top</div>
+          <div class="cmd cmd_down hidden">Down</div>
+          <div class="cmd cmd_right hidden">Right</div>
+        </div>
+      </div> -->
+
       <dialog id="win-screen">
         <h3 id="game__intro">Ah bah voilà! <span id="score"></span></h3>
         <p>
@@ -49,6 +58,12 @@
         <p>You're officially worse than 99% of the rest of the users...</p>
         <button>Save your honnor, play again</button>
       </dialog>
+
+      <audio
+        id="welcome-music"
+        src="./audio/MA_Awesomemusic_ModernInterior.wav"
+      ></audio>
+      <audio id="whoosh" src="./audio/whoosh-sound.mp3"></audio>
     </div>
   </body>
 </html>

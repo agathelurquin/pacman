@@ -1,6 +1,8 @@
 import Pacman from "./pacman.js";
 import Game from "./game.js";
 
+const whoosh = document.getElementById("whoosh");
+
 export default class Character {
   constructor(x, y, classes) {
     this.x = x;
@@ -56,18 +58,15 @@ export default class Character {
     // Move the character image from cell to cell
     if (this.currentCell && !this.currentCell.classList.contains("wall")) {
       // Deletes the image from the previous cell
-      this.previousCell.classList.remove(this.classes);
+      this.previousCell.classList.remove(this.classes, this.direction);
       // Moves the image to the new cell
-      this.currentCell.classList.add(this.classes);
+      this.currentCell.classList.add(this.classes, this.direction);
       // Updates the coordinate variables of the character
       this.updateXAndY(direction);
     } else {
       // for later, if we try to go through a wall, add css effect like buzzing or something
       this.currentCell = this.previousCell;
-      this.currentCell.classList.add("bug");
-      setTimeout(() => {
-        this.currentCell.classList.remove("bug");
-      }, 200);
+      this.currentCell.classList.add([this.classes, this.direction]);
     }
   }
 
@@ -78,6 +77,7 @@ export default class Character {
         break;
       case "right":
         this.y = this.y === 26 ? 0 : this.y + 1;
+
         break;
       case "down":
         ++this.x;
@@ -86,13 +86,14 @@ export default class Character {
         this.y = this.y === 0 ? 26 : this.y - 1;
         break;
     }
+    // this.changeProfile(direction);
   }
 
   addClass(cellClass) {
-    this.currentCell.classList.add(cellClass);
+    this.currentCell.classList.add(...cellClass);
   }
   removeClass(cellClass) {
-    this.currentCell.classList.remove(cellClass);
+    this.currentCell.classList.remove(...cellClass);
   }
 
   clearCell() {
@@ -120,6 +121,8 @@ export default class Character {
       this.y === 0 &&
       this.previousCell.getAttribute("y") === "1"
     ) {
+      whoosh.volume = 0.7;
+      whoosh.play();
       setTimeout(() => {
         this.x = 14;
         this.y = 27;
@@ -130,6 +133,8 @@ export default class Character {
       this.y === 26 &&
       this.previousCell.getAttribute("y") === "25"
     ) {
+      whoosh.volume = 0.7;
+      whoosh.play();
       setTimeout(() => {
         this.x = 14;
         this.y = -1;
